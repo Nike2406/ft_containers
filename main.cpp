@@ -22,14 +22,14 @@ int main() {
     std::cout << "================================" << std::endl;
 
     std::cout << "Vector" << std::endl;
-    ft::stack< int> myStack;
+    ft::vector< int> myVector;
     myStack.push(1);
     myStack.push(2);
     myStack.push(3);
     myStack.push(4);
     myStack.pop();
     myStack.empty();
-    int size = myStack.size();
+    size = myStack.size();
     for (int i = 0; i < size; i++) {
         std::cout << myStack.top() << std::endl;
         myStack.pop();
