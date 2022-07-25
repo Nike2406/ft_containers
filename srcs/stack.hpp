@@ -12,7 +12,7 @@ namespace ft {
         typedef Container container_type;
         typedef typename Container::size_type size_type;
 
-        /*===== Canonical form ======*/
+        /***** Canonical form ******/
         // This form from off docs
         explicit stack(const container_type &container = container_type()) : _container(container) {}
 
@@ -26,7 +26,7 @@ namespace ft {
 
         ~stack() {}
 
-        /*===== Member functions =====*/
+        /***** Member functions *****/
         // Is container empty?
         bool empty() const                  { return (_container.empty()); }
         // Return size
@@ -39,7 +39,7 @@ namespace ft {
         // Inserts a new element at the top
         void push (const value_type& val)   { _container.push_back(val); }
 
-        /*===== Relational operators =====*/
+        /***** Relational operators *****/
         template <class T1, class Container1>
         friend bool operator== (const stack<T1, Container1>& lhs, const stack<T1, Container1>& rhs);
 
