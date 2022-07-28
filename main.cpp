@@ -22,7 +22,7 @@ int main() {
     std::cout << "================================" << std::endl;
 
     std::cout << "Vector" << std::endl;
-    std::vector< int> myVector;
+    std::vector<int> myVector;
     myStack.push(1);
     myStack.push(2);
     myStack.push(3);
