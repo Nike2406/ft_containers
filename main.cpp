@@ -1,10 +1,10 @@
 #include <iostream>
-//#include "./srcs/vector.hpp"
-//#include "./srcs/stack.hpp"
+#include "./srcs/vector.hpp"
+#include "./srcs/stack.hpp"
 #include <vector>
 #include <stack>
 
-void printContainer(std::string containerType, std::vector<int> myVector);
+void printContainer(std::string containerType, std::vector<int> &myVector);
 
 int main() {
 //    std::cout << "Stack" << std::endl;
@@ -44,24 +44,27 @@ int main() {
     std::vector<int> myVector;
 
     printContainer(containerType, myVector);
-    myVector.push_back(1);
-    myVector.push_back(2);
-    myVector.push_back(3);
-    myVector.push_back(4);
-    myVector.resize(545646546468464648646848648484848484864);
-    myVector.reserve(20);
+    for (int i = 0; i < 10; i++) {
+        myVector.push_back(i);
+    }
+//    myVector.resize(300);
+    myVector.reserve(40);
+    myVector.push_back(50);
+    for (int i = 0; i < 50; ++i) {
+        myVector.pop_back();
+    }
     printContainer(containerType, myVector);
-
+//
     return 0;
 }
 
-void printContainer(std::string containerType, std::vector<int> myVector) {
+void printContainer(std::string containerType, std::vector<int> &myVector) {
     std::cout << containerType << " max_size: " << myVector.max_size() << std::endl;
     std::cout << containerType << " size: " << myVector.size() << std::endl;
     std::cout << containerType << " capacity: " << myVector.capacity() << std::endl;
-    for (int i = 0; i < myVector.size(); ++i) {
-        std::cout << myVector[i] << " ";
-    }
-    std::cout << std::endl;
+//    for (int i = 0; i < myVector.size(); ++i) {
+//        std::cout << myVector[i] << " ";
+//    }
+//    std::cout << std::endl;
 
 }

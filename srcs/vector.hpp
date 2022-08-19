@@ -23,10 +23,10 @@ namespace ft {
         typedef T const_reverse_iterator;
 
     private:
-        pointer _array;
-        size_type _size;
-        size_type _capacity;
-        allocator_type _alloc;
+        pointer         _array;
+        size_type       _size;
+        size_type       _capacity;
+        allocator_type  _alloc;
 
     public:
         /***** Member functions ******/
@@ -62,8 +62,10 @@ namespace ft {
         /***** Capacity ******/
         // return vector size
         size_type size() const      { return _size; }
+
         // return maximum size which vector can allocate
         size_type max_size() const  { return _alloc.max_size(); }
+
         // change container size with n elements
         void resize (size_type n, value_type val = value_type()) {
             if (n > this->max_size())
@@ -72,22 +74,60 @@ namespace ft {
                 return;
             else if (n < _size) {
                 while (_size > n) {
-                    // TODO realise after movement pop/push
-                    // _alloc.destroy(last)
+                    pop_back();
+                }
+            } else if (n > _size) {
+                while (_size < n) {
+                    push_back(val);
                 }
             }
         }
 
+        // returns vector capacity
+        size_type capacity() const      { return this->_capacity; }
+
         // reserve n elements for container
         void reserve(size_t n) { // std::vector::reserve
             try {
-                if (_capacity < n) {
+                if (n > _capacity) {
                     pointer newArray = _alloc.allocate(n);
+                    for (size_t i = 0; i < _size; i++) {
+                        _alloc.construct(newArray + i, _array[i]);
+                        _alloc.destroy(_array + i);
+                    }
+                    _alloc.deallocate(_array, _capacity);
+                    _array = newArray;
+                    _capacity = n;
+                } else {
+                    return;
                 }
             } catch (const std::length_error &le) {
                 std::cerr << "Length error: " << le.what() << '\n';
             }
         }
+
+        /*****  Modifiers ******/
+        // TODO vector::assign
+        template <class InputIterator>
+        void assign (InputIterator first, InputIterator last);
+
+        void assign (size_type n, const value_type& val);
+
+        void push_back (const value_type& val) {
+            if (_capacity == _size && _capacity) {
+                reserve(_capacity * 2);
+            } else {
+                reserve(1);
+            }
+            _alloc.construct(_array + _size, val);
+            _size++;
+        }
+
+        void pop_back() {
+            _alloc.destroy(_array + _size - 1);
+            _size--;
+        }
+
     };
 }
 
