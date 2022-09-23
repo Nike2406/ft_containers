@@ -6,6 +6,7 @@
 #include "./utils/enable_if.hpp"
 #include "./utils/is_integral.hpp"
 #include "./utils/equal.hpp"
+#include "./utils/lexicographical_compare.hpp"
 
 namespace ft {
     template<class T, class Allocator = std::allocator<T> >
@@ -372,20 +373,43 @@ namespace ft {
             _alloc.deallocate(reserved_buffer, range);
             return result;
         }
+    };
 
         /***** Non-member function ******/
+
+        template <class T, class Alloc>
+        void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) {
+            x.swap(y);
+        }
+
         template <class T1, class T2>
         bool operator== (const ft::vector<T1,T2>& lhs, const ft::vector<T1,T2>& rhs) {
             if (lhs.size() == rhs.size())
                 return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
             return false;
         }
-//        template <class T1, class T2>  bool operator!= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs);
-//        template <class T1, class T2>  bool operator<  (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs);
-//        template <class T1, class T2>  bool operator<= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs);
-//        template <class T1, class T2>  bool operator>  (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs);
-//        template <class T1, class T2>  bool operator>= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs);
-    };
+        template <class T1, class T2>
+        bool operator!= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs) {
+            return !(lhs == rhs);
+        }
+        template <class T1, class T2>
+        bool operator<  (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs) {
+            return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        }
+        template <class T1, class T2>
+        bool operator<= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs) {
+            if (lhs == rhs) return true;
+            return (lhs < rhs);
+        }
+        template <class T1, class T2>
+        bool operator>  (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs) {
+            return ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end());
+        }
+        template <class T1, class T2>
+        bool operator>= (const vector<T1,T2>& lhs, const vector<T1,T2>& rhs) {
+            if (lhs == rhs) return true;
+            return (lhs > rhs);
+        }
 }
 
 #endif
