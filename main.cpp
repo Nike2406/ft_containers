@@ -1,6 +1,6 @@
 #include <iostream>
-#include "./srcs/vector.hpp"
-#include "./srcs/stack.hpp"
+#include "srcs/containers/vector.hpp"
+#include "srcs/containers/stack.hpp"
 #include <vector>
 #include <stack>
 

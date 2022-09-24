@@ -3,10 +3,10 @@
 
 #include <memory> // for std::allocator
 #include <iostream>
-#include "./utils/enable_if.hpp"
-#include "./utils/is_integral.hpp"
-#include "./utils/equal.hpp"
-#include "./utils/lexicographical_compare.hpp"
+#include "../utils/enable_if.hpp"
+#include "../utils/is_integral.hpp"
+#include "../utils/equal.hpp"
+#include "../utils/lexicographical_compare.hpp"
 
 namespace ft {
     template<class T, class Allocator = std::allocator<T> >
@@ -376,7 +376,6 @@ namespace ft {
     };
 
         /***** Non-member function ******/
-
         template <class T, class Alloc>
         void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) {
             x.swap(y);
