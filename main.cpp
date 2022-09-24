@@ -4,7 +4,7 @@
 #include <vector>
 #include <stack>
 
-void printContainer(std::string containerType, std::vector<int> &myVector);
+void printContainer(std::string basicString, ft::vector<int> vector1);
 
 int main() {
 //    std::cout << "Stack" << std::endl;
@@ -41,7 +41,7 @@ int main() {
 
     /**** Check ****/
     std::string containerType = "Vector";
-    std::vector<int> myVector;
+    ft::vector<int> myVector;
 
     printContainer(containerType, myVector);
     for (int i = 0; i < 10; i++) {
@@ -58,7 +58,7 @@ int main() {
     return 0;
 }
 
-void printContainer(std::string containerType, std::vector<int> &myVector) {
+void printContainer(std::string containerType, ft::vector<int> myVector) {
     std::cout << containerType << " max_size: " << myVector.max_size() << std::endl;
     std::cout << containerType << " size: " << myVector.size() << std::endl;
     std::cout << containerType << " capacity: " << myVector.capacity() << std::endl;
@@ -66,5 +66,4 @@ void printContainer(std::string containerType, std::vector<int> &myVector) {
 //        std::cout << myVector[i] << " ";
 //    }
 //    std::cout << std::endl;
-
 }
